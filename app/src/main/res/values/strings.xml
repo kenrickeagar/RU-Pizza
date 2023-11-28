@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">cs213-project-5</string>
+    <string name="specialty_btn">Specialty Pizza</string>
+    <string name="byo_btn">Build Your Own Pizza</string>
+    <string name="store_orders_btn">Store Orders</string>
+    <string name="current_order_btn">Current Order</string>
 </resources>
