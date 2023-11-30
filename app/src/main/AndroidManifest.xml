@@ -13,16 +13,16 @@
             android:theme="@style/Theme.Cs213project5"
             tools:targetApi="31">
         <activity
-                android:name=".CurrentOrder"
+                android:name=".CurrentOrderActivity"
                 android:exported="false"/>
         <activity
-                android:name=".StoreOrders"
+                android:name=".StoreOrdersActivity"
                 android:exported="false"/>
         <activity
-                android:name=".BuildYourOwn"
+                android:name=".BuildYourOwnActivity"
                 android:exported="false"/>
         <activity
-                android:name=".SpecialtyPizza"
+                android:name=".SpecialtyPizzaActivity"
                 android:exported="false"/>
         <activity
                 android:name=".MainActivity"

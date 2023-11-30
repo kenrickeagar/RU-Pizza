@@ -18,22 +18,34 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void specialtyBtn(View view) {
-        Intent intent = new Intent(this, SpecialtyPizza.class);
+        Intent intent = new Intent(this, SpecialtyPizzaActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Switch to build your own activity button handler.
+     * @param view
+     */
     public void byoBtn(View view) {
-        Intent intent = new Intent(this, BuildYourOwn.class);
+        Intent intent = new Intent(this, BuildYourOwnActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Switch to store orders activity button handler.
+     * @param view
+     */
     public void storeOrdersBtn(View view) {
-        Intent intent = new Intent(this, StoreOrders.class);
+        Intent intent = new Intent(this, StoreOrdersActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Switch to current order activity button handler.
+     * @param view
+     */
     public void currentOrderBtn(View view) {
-        Intent intent = new Intent(this, CurrentOrder.class);
+        Intent intent = new Intent(this, CurrentOrderActivity.class);
         startActivity(intent);
     }
 }

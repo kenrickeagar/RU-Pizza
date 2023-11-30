@@ -4,4 +4,5 @@
     <string name="byo_btn">Build Your Own Pizza</string>
     <string name="store_orders_btn">Store Orders</string>
     <string name="current_order_btn">Current Order</string>
+    <string name="pizza1">Pepperoni</string>
 </resources>

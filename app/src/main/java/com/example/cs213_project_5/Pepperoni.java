@@ -4,26 +4,22 @@ import java.util.ArrayList;
 
 
 /**
- * Extend Pizza Class and Define BuildYourOwn Class
+ * Extend Pizza Class and Define Pepperoni Class
  * @author Kenrick Eagar, Zachary Derish
  */
+public class Pepperoni extends Pizza{
 
-public class BuildYourOwn extends Pizza {
-
-    public static final double PRICE = 8.99;
-
-    public final String type = "Build Your Own";
-
-    /**
-     * Build Your Own default constructor
-     */
-    public BuildYourOwn(){
-      this.toppings = new ArrayList<>();
-      this.size = Size.SMALL;
+    public static final double PRICE = 10.99;
+    private final String type = "Pepperoni";
+    public Pepperoni(){
+        ArrayList<Topping> toppings = new ArrayList<>();
+        toppings.add(Topping.PEPPERONI);
+        this.toppings = toppings;
+        this.sauce = Sauce.TOMATO;
+        this.size = Size.SMALL;
     }
-
     /**
-     * Method to return Price of Build Your Own Pizza
+     * Method to return Price of Pepperoni Pizza
      * @return double, representing price of pizza
      */
     @Override
@@ -41,21 +37,23 @@ public class BuildYourOwn extends Pizza {
         if(this.extraSauce){
             finalPrice+=1;
         }
-        if(this.toppings.size() > 3){
-            double numTop = toppings.size();
-            finalPrice += (toppings.size() - 3) * 1.49;
-        }
         return finalPrice;
     }
 
     /**
-     * Deluxe pizza String format.
+     * Type getter method.
+     * @return String
+     */
+    public String getType() {
+        return this.type;
+    }
+
+    /**
+     * Pepperoni Pizza String format.
      * @return String
      */
     @Override
     public String toString() {
         return "[" + type + "] " + super.toString();
     }
-
-
 }
