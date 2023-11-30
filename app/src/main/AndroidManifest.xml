@@ -13,6 +13,18 @@
             android:theme="@style/Theme.Cs213project5"
             tools:targetApi="31">
         <activity
+                android:name=".CurrentOrder"
+                android:exported="false"/>
+        <activity
+                android:name=".StoreOrders"
+                android:exported="false"/>
+        <activity
+                android:name=".BuildYourOwn"
+                android:exported="false"/>
+        <activity
+                android:name=".SpecialtyPizza"
+                android:exported="false"/>
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
