@@ -7,4 +7,6 @@
     <string name="pizza1">Pepperoni</string>
     <string name="byo_title">Build Your Own Pizza</string>
     <string name="select_topps">Select Toppings</string>
+    <string name="select_sauce">Select Sauce</string>
+    <string name="select_size">Select Size</string>
 </resources>
