@@ -9,4 +9,7 @@
     <string name="select_topps">Select Toppings</string>
     <string name="select_sauce">Select Sauce</string>
     <string name="select_size">Select Size</string>
+    <string name="extra_sauce">Extra Sauce</string>
+    <string name="extra_cheese">Extra Cheese</string>
+    <string name="addOrder">Add To Order</string>
 </resources>

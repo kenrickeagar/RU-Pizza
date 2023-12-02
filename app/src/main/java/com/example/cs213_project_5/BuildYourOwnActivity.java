@@ -105,7 +105,7 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     ArrayAdapter<String> sauceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sauceList);
     sauceAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
     sauceSpinner.setAdapter(sauceAdapter);
-
+//initialize size spinner
     sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
