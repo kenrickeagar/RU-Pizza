@@ -21,58 +21,55 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                         "BEEF", "HAM", "SHRIMP","SQUID","CRAB_MEATS","PINEAPPLE","PICKLES","CHICKEN",
                         "FRIED_EGG", "BACON", "SPINACH", "HAMBURGER"};
 
+
+    private void removeElement(ArrayList<Integer> list, int target){
+        for(int i = 0; i<list.size(); i++){
+            if(list.get(i) == target){
+                list.remove(i);
+                return;
+            }
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_your_own);
-
-
         listToppings = findViewById(R.id.list_topps);
 
         selectedToppings = new boolean[toppings.length];
-
         listToppings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwnActivity.this);
                 builder.setTitle("Select Toppings");
                 builder.setCancelable(false);
 
                 builder.setMultiChoiceItems(toppings, selectedToppings, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                        if(b){
+                        if (b) {
                             topArray.add(i);
                             Collections.sort(topArray);
-                        }
-                        else{
-                            topArray.remove(i);
+                        } else {
+                            removeElement(topArray, i);
                         }
                     }
                 });
-
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override //action once OK is selected
                     public void onClick(DialogInterface dialogInterface, int i) {
                         StringBuilder stringBuilder = new StringBuilder();
-                        for(int j =0; j<topArray.size(); j++){
+                        for (int j = 0; j < topArray.size(); j++) {
                             stringBuilder.append(toppings[topArray.get(j)]);
-                            if(j != topArray.size()-1){
+                            if (j != topArray.size() - 1) {
                                 stringBuilder.append(", ");
                             }
                         }
                         listToppings.setText(stringBuilder.toString());
                     }
                 });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-
-
                 //can add a clear all option here
                 builder.show();
             }
