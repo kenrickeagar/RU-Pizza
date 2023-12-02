@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,11 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                         "FRIED_EGG", "BACON", "SPINACH", "HAMBURGER"};
 
 
-
-
+    /**
+     * Method to search for a specific number within arrayList and remove it
+     * @param list, Generic Integer ArrayList that contains no duplicate numbers
+     * @param target, number we want to remove
+     */
     private void removeElement(ArrayList<Integer> list, int target){
         for(int i = 0; i<list.size(); i++){
             if(list.get(i) == target){
@@ -40,7 +45,9 @@ public class BuildYourOwnActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * Method to initialize and show toppingsDialogue
+     */
     private void showToppingsDialogue(){
         AlertDialog.Builder builder = new AlertDialog.Builder(BuildYourOwnActivity.this);
         builder.setTitle("Select Toppings");
@@ -86,6 +93,11 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         });
         Spinner sauceSpinner = findViewById(R.id.sauce_spinner);
         Spinner sizeSpinner = findViewById(R.id.size_spinner);
+
+        CheckBox exSauce = findViewById((R.id.exSauce_Box));
+        CheckBox exCheese = findViewById((R.id.exCheese_box));
+
+        Button addOrder = findViewById(R.id.byoAddOrder);
 //getting sauce type
         sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
