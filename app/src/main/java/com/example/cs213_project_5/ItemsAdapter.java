@@ -69,7 +69,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
     public class ItemsHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private TextView pizzaName, toppings, sauce;
-        //private RelativeLayout parentLayout; //this is the row layout
+        private RelativeLayout parentLayout; //this is the row layout
 
         public ItemsHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,7 +77,19 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>
             pizzaName = itemView.findViewById(R.id.pizzaName);
             toppings = itemView.findViewById(R.id.toppings);
             sauce = itemView.findViewById(R.id.sauce);
-            //parentLayout = itemView.findViewById(R.id.rowView);
+            parentLayout = itemView.findViewById(R.id.rowView);
+            parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), ItemSelectedActivity.class);
+                    int position = getAdapterPosition();
+                    intent.putExtra("Sauce", items.get(position).getSauce());
+                    intent.putExtra("PizzaName", items.get(position).getPizzaName());
+                    intent.putExtra("Toppings", items.get(position).getToppings());
+                    intent.putExtra("Image", items.get(position).getImage());
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
