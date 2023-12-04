@@ -31,16 +31,16 @@ public class PizzaMaker {
         if(pizzaType.equals("Meatzza")){
             return new Meatzza();
         }
-        if(pizzaType.equals("BBQChicken")){
+        if(pizzaType.equals("BBQ Chicken")){
             return new BBQChicken();
         }
-        if(pizzaType.equals("Breakfast")){
+        if(pizzaType.equals("Breakfast Pizza")){
             return new Breakfast();
         }
-        if(pizzaType.equals("BuffaloChicken")){
+        if(pizzaType.equals("Buffalo Chicken")){
             return new BuffaloChicken();
         }
-        if(pizzaType.equals("Hamburger")){
+        if(pizzaType.equals("Hamburger Pizza")){
             return new Hamburger();
         }
         if(pizzaType.equals("Hawaiian")){
