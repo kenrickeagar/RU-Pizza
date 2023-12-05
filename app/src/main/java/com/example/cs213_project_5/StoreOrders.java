@@ -18,6 +18,7 @@ public class StoreOrders {
 
     private static StoreOrders storeOrders;
     private ArrayList<Order> storeOrdersList; //this will be the only instance variable used for construction
+    private ArrayList<Order> storeOrdersPlaced;
 
     private static int orderNumber = 0; //static variable as requested in instructions
 
@@ -27,6 +28,7 @@ public class StoreOrders {
      */
     private StoreOrders(){
         this.storeOrdersList = new ArrayList<>();
+        this.storeOrdersPlaced = new ArrayList<>();
         // create first order
         ArrayList<Pizza> pizzaList = new ArrayList<>();
         Order firstOrder = new Order(0, pizzaList);
@@ -62,6 +64,14 @@ public class StoreOrders {
     }
 
     /**
+     * Getter method for order placed ArrayList
+     * @return Arraylist<Order>
+     */
+    public ArrayList<Order> getStoreOrdersPlaced() {
+        return this.storeOrdersPlaced;
+    }
+
+    /**
      * Get the next available order number
      * @return integer of the current order number that is available.
      */
@@ -85,12 +95,13 @@ public class StoreOrders {
     }
 
     /**
-     *Add order object to store orders order list
+     * Add order object to store orders order list
      * @param order, the order we want to add
      */
     public void addOrder(Order order) {
         int index = findIndexOfOrder(order);
         this.storeOrdersList.set(index, order);
+        this.storeOrdersPlaced.add(index, order);
       //  this.storeOrders.set(getAvailable_OrderNumber(), order);
 
 

@@ -14,4 +14,7 @@
     <string name="addOrder">Add To Order</string>
     <string name="price">Price: $</string>
     <string name="byoprice">8.99</string>
+    <string name="order_header">Current Order</string>
+    <string name="order_btn">Place Order</string>
+    <string name="remove_btn">Remove Item</string>
 </resources>

@@ -7,8 +7,30 @@
         android:layout_height="match_parent"
         tools:context=".CurrentOrderActivity">
 
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/currentOrderTextView"
-              app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView android:text="@string/order_header"
+              android:id="@+id/orderHeader"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="150dp"/>
+
+    <ListView android:layout_width="411dp"
+              android:layout_height="549dp"
+              android:id="@+id/currentOrderListView"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginEnd="5dp" app:layout_constraintTop_toTopOf="parent"
+              android:layout_marginTop="100dp"/>
+
+    <Button android:layout_width="183dp" android:layout_height="71dp"
+            android:text="@string/order_btn"
+            android:id="@+id/placeOrderBtn"
+            android:onClick="addOrderBtnClick"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="3dp"/>
+    <Button
+            android:text="@string/remove_btn"
+            android:layout_width="156dp"
+            android:layout_height="73dp" android:id="@+id/removeItemBtn"
+            android:layout_marginEnd="6dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="1dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
