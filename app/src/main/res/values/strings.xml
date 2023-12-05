@@ -13,4 +13,5 @@
     <string name="extra_cheese">Extra Cheese</string>
     <string name="addOrder">Add To Order</string>
     <string name="price">Price: $</string>
+    <string name="byoprice">8.99</string>
 </resources>

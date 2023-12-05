@@ -129,8 +129,37 @@
         android:text="@string/addOrder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_topps"
-        app:layout_constraintVertical_bias="0.717" />
+        app:layout_constraintVertical_bias="0.743" />
+
+    <TextView
+        android:id="@+id/byoPriceText1"
+        android:layout_width="75dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="113dp"
+        android:text="@string/price"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_topps"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/byoPriceText"
+        android:layout_width="86dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="113dp"
+        android:text="@string/byoprice"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.335"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_topps"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
