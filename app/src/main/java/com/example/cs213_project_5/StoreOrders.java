@@ -16,41 +16,54 @@ import java.util.List;
 
 public class StoreOrders {
 
-    private ArrayList<Order> storeOrders; //this will be the only instance variable used for construction
+    private static StoreOrders storeOrders;
+    private ArrayList<Order> storeOrdersList; //this will be the only instance variable used for construction
 
     private static int orderNumber = 0; //static variable as requested in instructions
 
     /**
-     * Store order object default constructor
+     * Store order object default constructor.
+     * Singleton Design.
      */
-    public StoreOrders(){
-        this.storeOrders = new ArrayList<>();
+    private StoreOrders(){
+        this.storeOrdersList = new ArrayList<>();
         // create first order
         ArrayList<Pizza> pizzaList = new ArrayList<>();
         Order firstOrder = new Order(0, pizzaList);
-        this.storeOrders.add(firstOrder);
+        this.storeOrdersList.add(firstOrder);
     }
 
     /**
      * Store order object constructor
      * @param storeOrders, a list of order objects
      */
-    public StoreOrders(ArrayList<Order> storeOrders){
+    /*public StoreOrders(ArrayList<Order> storeOrders){
         this.storeOrders = storeOrders;
-    }
+    }*/
 
 
     /**
-     * Get store orders/list of orders in store order object
-     * @return arrayList of order objects in store order object
+     * Get StoreOrders object.
+     * @return StoreOrders
      */
-    public ArrayList<Order> getStoreOrders() {
-        return this.storeOrders;
+    public static synchronized StoreOrders getStoreOrders() {
+        if (storeOrders == null) {
+            storeOrders = new StoreOrders();
+        }
+        return storeOrders;
+    }
+
+    /**
+     * Getter method for Order ArrayList.
+     * @return ArrayList<Order>
+     */
+    public ArrayList<Order> getStoreOrdersList() {
+        return this.storeOrdersList;
     }
 
     /**
      * Get the next available order number
-     * @return integer of the current order number thats available
+     * @return integer of the current order number that is available.
      */
     public int getAvailable_OrderNumber() {
         int returnNum = orderNumber;
@@ -63,8 +76,8 @@ public class StoreOrders {
      * @return index of order in list, -1 if object is not in list
      */
     public int findIndexOfOrder(Order order){
-        for(int i =0; i<this.storeOrders.size(); i++){
-            if(storeOrders.get(i).getOrderNumber() == order.getOrderNumber()){
+        for(int i =0; i<this.storeOrdersList.size(); i++){
+            if(storeOrdersList.get(i).getOrderNumber() == order.getOrderNumber()){
                 return i;
             }
         }
@@ -77,7 +90,7 @@ public class StoreOrders {
      */
     public void addOrder(Order order) {
         int index = findIndexOfOrder(order);
-        this.storeOrders.set(index, order);
+        this.storeOrdersList.set(index, order);
       //  this.storeOrders.set(getAvailable_OrderNumber(), order);
 
 
@@ -85,7 +98,7 @@ public class StoreOrders {
 
         ArrayList<Pizza> pizzaList = new ArrayList<>();
         Order setOrder = new Order(orderNumber, pizzaList);
-        this.storeOrders.add(setOrder);
+        this.storeOrdersList.add(setOrder);
     }
 
     /**
@@ -94,8 +107,8 @@ public class StoreOrders {
      */
     public ArrayList<Integer> getOrderNumbers(){
         ArrayList<Integer> orderNums = new ArrayList<>();
-        for(int i = 0; i<this.storeOrders.size(); i++){
-            int tempNum = this.storeOrders.get(i).getOrderNumber();
+        for(int i = 0; i<this.storeOrdersList.size(); i++){
+            int tempNum = this.storeOrdersList.get(i).getOrderNumber();
             orderNums.add(tempNum);
         }
         return orderNums;
@@ -107,12 +120,12 @@ public class StoreOrders {
      * @return order object
      */
     public Order find(int orderNumber){
-        for(int i =0; i<this.storeOrders.size(); i++){
-            if(this.storeOrders.get(i).getOrderNumber() == orderNumber){
-                return storeOrders.get(i);
+        for(int i =0; i<this.storeOrdersList.size(); i++){
+            if(this.storeOrdersList.get(i).getOrderNumber() == orderNumber){
+                return storeOrdersList.get(i);
             }
         }
-        return storeOrders.get(0);
+        return storeOrdersList.get(0);
     }
 
     /**
@@ -122,7 +135,7 @@ public class StoreOrders {
      */
     public boolean removeOrder(int orderNumber){
         Order removeMe = find(orderNumber);
-        this.storeOrders.remove(removeMe);
+        this.storeOrdersList.remove(removeMe);
         return true;
     }
 
@@ -131,7 +144,7 @@ public class StoreOrders {
      * @return store orders array list size
      */
     public int numberOfOrders(){
-        return this.storeOrders.size();
+        return this.storeOrdersList.size();
     }
 
     /**
@@ -140,7 +153,7 @@ public class StoreOrders {
      * @return string representation of order
      */
     public String orderToString(int index){
-       Order order = storeOrders.get(index);
+       Order order = storeOrdersList.get(index);
        int orderNumber = order.getOrderNumber();
        double total = order.getOrder_Subtotal();
        double tax = 0.06625;

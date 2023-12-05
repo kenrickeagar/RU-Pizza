@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class ItemSelectedActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -15,6 +16,7 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
     private Spinner spinner;
     private ArrayAdapter<String> adapter;
     private CheckBox cheeseCheckBox, sauceCheckBox;
+    private Button specialtyAddOrderBtn;
     private Pizza pizza;
 
     @Override
@@ -39,7 +41,6 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this); //add the listener
 
-        // Set initial price
         String pizzaType = intent.getStringExtra("PizzaName");
         pizza = PizzaMaker.createPizza(pizzaType);
         CharSequence priceSeq = getPrice();
@@ -107,5 +108,31 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
         }
 
         price.setText(getPrice());
+    }
+
+    public void specialtyAddOrderClick(View view) {
+        // Add order message
+        String msg = "Pizza Added to Order!";
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show(); //do something about the selected item
+
+        // Add pizza to current order
+        StoreOrders storeOrders = StoreOrders.getStoreOrders();
+        ArrayList<Order> orders = storeOrders.getStoreOrdersList();
+        int orderNumber = storeOrders.getAvailable_OrderNumber();
+        Order currentOrder = orders.get(orderNumber);
+        currentOrder.addPizza(pizza);
+
+        // Reset button selections
+        spinner.setSelection(0);
+        cheeseCheckBox.setChecked(false);
+        sauceCheckBox.setChecked(false);
+
+        // Reset pizza object
+        Intent intent = getIntent();
+        String pizzaType = intent.getStringExtra("PizzaName");
+        pizza = PizzaMaker.createPizza(pizzaType);
+        CharSequence priceSeq = getPrice();
+        price.setText(priceSeq);
+
     }
 }
