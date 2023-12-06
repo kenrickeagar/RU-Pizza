@@ -8,13 +8,15 @@ import android.os.Bundle;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class CurrentOrderActivity extends AppCompatActivity{
+public class CurrentOrderActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private TextView orderHeader;
     private Spinner orderSpinner;
     private Button addOrderBtn;
     private ArrayAdapter<String> adapter;
     private ListView currentOrderListView;
+    ArrayList<String> pizzas;
+    private int selectedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +30,29 @@ public class CurrentOrderActivity extends AppCompatActivity{
         StoreOrders storeOrders = StoreOrders.getStoreOrders();
         ArrayList<Order> storeOrdersList = storeOrders.getStoreOrdersList();
         Order currentOrder = storeOrdersList.get(storeOrders.getAvailable_OrderNumber());
+
+        if (currentOrder.getPizzas().isEmpty()) {
+            String size = "No pizza selected!";
+            Toast.makeText(this, size, Toast.LENGTH_SHORT).show(); //do something about the selected item
+            return;
+        }
+
         storeOrders.addOrder(currentOrder);
 
         updatePizzaListView(storeOrders.getAvailable_OrderNumber());
         setOrderNumber();
+        selectedPosition = -1;
     }
 
     private void updatePizzaListView(int orderIndex) {
         StoreOrders storeOrders = StoreOrders.getStoreOrders();
         ArrayList<Order> orders = storeOrders.getStoreOrdersList();
-        ArrayList<String> pizzas = orders.get(orderIndex).getPizzas();
+        pizzas = orders.get(orderIndex).getPizzas();
         currentOrderListView = findViewById(R.id.currentOrderListView);
         adapter = new ArrayAdapter<>(
                 this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, pizzas);
         currentOrderListView.setAdapter(adapter);
+        currentOrderListView.setOnItemClickListener(this);
 
     }
 
@@ -52,6 +63,40 @@ public class CurrentOrderActivity extends AppCompatActivity{
         orderHeader.setText(orderNum);
     }
 
+    @Override
+    public void onItemClick(AdapterView parent, View view, int position, long id) {
+        StoreOrders storeOrders = StoreOrders.getStoreOrders();
+        ArrayList<Order> orders = storeOrders.getStoreOrdersList();
+        Order order = orders.get(storeOrders.getAvailable_OrderNumber());
+        /*int orderIndex = storeOrders.findIndexOfOrder(order);
+        order.removePizza(position);
+        updatePizzaListView(orderIndex);*/
+        System.out.println(position);
+        selectedPosition = position;
+        String size = order.getPizza(position).toString() + " is selected."; //get the selected item
+        Toast.makeText(this, size, Toast.LENGTH_SHORT).show(); //do something about the selected item
+    }
+
+    public void onRemoveBtnClick(View view) {;
+        if (selectedPosition == -1) {
+            String size = "No pizza selected!";
+            Toast.makeText(this, size, Toast.LENGTH_SHORT).show(); //do something about the selected item
+            return;
+        }
+        try {
+            StoreOrders storeOrders = StoreOrders.getStoreOrders();
+            ArrayList<Order> orders = storeOrders.getStoreOrdersList();
+            Order order = orders.get(storeOrders.getAvailable_OrderNumber());
+            int orderIndex = storeOrders.findIndexOfOrder(order);
+            order.removePizza(selectedPosition);
+            updatePizzaListView(orderIndex);
+        }
+        catch(IndexOutOfBoundsException exception) {
+            String size = "No pizza selected!";
+            Toast.makeText(this, size, Toast.LENGTH_SHORT).show(); //do something about the selected item
+        }
+
+    }
 
 
 }
