@@ -17,4 +17,7 @@
     <string name="order_header">Current Order</string>
     <string name="order_btn">Place Order</string>
     <string name="remove_btn">Remove Item</string>
+    <string name="so_title">Store Orders</string>
+    <string name="order_number">Order Number</string>
+    <string name="cancel_btn">Cancel Order</string>
 </resources>

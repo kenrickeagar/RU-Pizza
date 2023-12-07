@@ -10,4 +10,6 @@ public class StoreOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_orders);
     }
+
+
 }
