@@ -6,11 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CurrentOrderActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
-    private TextView orderHeader;
+    private TextView orderHeader, subtotalTextView, taxTextView, totalTextView;
     private Spinner orderSpinner;
     private Button addOrderBtn;
     private ArrayAdapter<String> adapter;
@@ -24,6 +25,11 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_current_order);
         updatePizzaListView(StoreOrders.getStoreOrders().getAvailable_OrderNumber());
         setOrderNumber();
+
+        subtotalTextView = findViewById(R.id.subtotal);
+        taxTextView = findViewById(R.id.tax);
+        totalTextView = findViewById(R.id.total);
+        updateTotal();
     }
 
     public void addOrderBtnClick(View view) {
@@ -41,6 +47,7 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
 
         updatePizzaListView(storeOrders.getAvailable_OrderNumber());
         setOrderNumber();
+        updateTotal();
         selectedPosition = -1;
     }
 
@@ -95,6 +102,38 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
             String size = "No pizza selected!";
             Toast.makeText(this, size, Toast.LENGTH_SHORT).show(); //do something about the selected item
         }
+
+        updateTotal();
+
+    }
+
+    private String formatDouble(Double price) {
+        DecimalFormat format = new DecimalFormat("#.##");
+        price = Double.parseDouble(format.format(price));
+        return String.valueOf(price);
+    }
+
+    /**
+     * Update subtotal, tax and total for current order.
+     */
+    private void updateTotal() {
+        StoreOrders storeOrders = StoreOrders.getStoreOrders();
+        ArrayList<Order> orders = storeOrders.getStoreOrdersList();
+        Order currentOrder = orders.get(storeOrders.getAvailable_OrderNumber());
+
+        double subtotal = currentOrder.getOrder_Subtotal();
+        String subtotalText = "Subtotal: $" + formatDouble(subtotal);
+        subtotalTextView.setText(subtotalText);
+
+        double TAX_RATE = .06625;
+        double tax = subtotal * TAX_RATE;
+        String taxText = "Tax: $" + formatDouble(tax);
+        taxTextView.setText(taxText);
+
+        double total = subtotal + tax;
+        String totalText = "Total: $ " + formatDouble(total);
+        totalTextView.setText(totalText);
+
 
     }
 
