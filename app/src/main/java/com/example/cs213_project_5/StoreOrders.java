@@ -127,6 +127,19 @@ public class StoreOrders {
     }
 
     /**
+     * Get list of order numbers
+     * @return list of order numbers
+     */
+    public ArrayList<Integer> getOrderNumbersPlaced(){
+        ArrayList<Integer> orderNums = new ArrayList<>();
+        for(int i = 0; i<storeOrdersPlaced.size(); i++){
+            int tempNum = storeOrdersPlaced.get(i).getOrderNumber();
+            orderNums.add(tempNum);
+        }
+        return orderNums;
+    }
+
+    /**
      * Return a given order object based off the order number
      * @param orderNumber, the order number of order object we want
      * @return order object
@@ -146,8 +159,23 @@ public class StoreOrders {
      * @return true if removed, false otherwise
      */
     public boolean removeOrder(int orderNumber){
+        if(orderNumber<0){
+            return false;
+        }
         Order removeMe = find(orderNumber);
+        storeOrdersPlaced.remove(orderNumber);
         this.storeOrdersList.remove(removeMe);
+        return true;
+    }
+
+    /**
+     * return boolean if there are any orders placed
+     */
+
+    public boolean hasOrders(){
+        if(storeOrdersPlaced.isEmpty()){
+            return false;
+        }
         return true;
     }
 

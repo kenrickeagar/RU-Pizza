@@ -64,6 +64,7 @@
         android:layout_height="61dp"
         android:layout_marginTop="10dp"
         android:text="@string/cancel_btn"
+        android:onClick="onSoCancelButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

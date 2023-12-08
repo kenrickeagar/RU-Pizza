@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,12 +18,13 @@ public class StoreOrdersActivity extends AppCompatActivity {
     private ListView pizzaOrderList;
     private Button cancelButton;
 
-    private int orderSelected;
+    private int orderSelected = -1; //Default
+
+
 
     private void fillOrderNumSpinner(){
-        ArrayList<Integer> orderNums = new ArrayList<>();
         StoreOrders storeOrder = StoreOrders.getStoreOrders();
-        orderNums = storeOrder.getOrderNumbers();
+        ArrayList<Integer> orderNums = storeOrder.getOrderNumbersPlaced() ;
         ArrayAdapter<Integer> orderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,orderNums);
         orderAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         orderNumSpinner.setAdapter(orderAdapter);
@@ -40,7 +42,14 @@ public class StoreOrdersActivity extends AppCompatActivity {
     }
 
     public void onSoCancelButton(View view){
-
+        StoreOrders storeOrder = StoreOrders.getStoreOrders();
+        if(!storeOrder.hasOrders()){
+            Toast.makeText(this, "No Orders Placed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        boolean removeMe = storeOrder.removeOrder(orderSelected);
+        fillOrderNumSpinner();
+        Toast.makeText(this, "Order: " + orderSelected + " Cancelled!", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -63,7 +72,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-//leave blank
+
             }
         });
 
