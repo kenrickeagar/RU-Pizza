@@ -25,6 +25,10 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     TextView priceBox;
     boolean[] selectedToppings;
     ArrayList<Integer> topArray = new ArrayList<>();
+    CheckBox exCheese, exSauce;
+    Spinner sauceSpinner, sizeSpinner;
+    Button addOrder;
+
 
     private BuildYourOwn pizza = (BuildYourOwn) createPizza("BuildYourOwn");
 
@@ -120,6 +124,44 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        return Size.LARGE;
    }
 
+   public void onExCheeseClick(View view){
+       if(exCheese.isChecked()){
+           pizza.extraCheese = true;
+           priceBox.setText(updatePrice());
+       } else{
+           pizza.extraCheese = false;
+           priceBox.setText(updatePrice());
+       }
+   }
+
+   public void onExSauceClick(View view){
+       if(exSauce.isChecked()){
+           pizza.extraSauce = true;
+           priceBox.setText(updatePrice());
+       } else{
+           pizza.extraSauce = false;
+           priceBox.setText(updatePrice());
+       }
+   }
+
+   private void initializeSauceSpinner(){
+       ArrayList<String> sauceList = new ArrayList<>();
+       sauceList.add("Tomato");
+       sauceList.add("Alfredo");
+       ArrayAdapter<String> sauceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sauceList);
+       sauceAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+       sauceSpinner.setAdapter(sauceAdapter);
+   }
+
+   private void initializeSizeSpinner(){
+       ArrayList<String> sizeList = new ArrayList<>();
+       sizeList.add("Small");
+       sizeList.add("Medium");
+       sizeList.add("Large");
+       ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sizeList);
+       sizeAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+       sizeSpinner.setAdapter(sizeAdapter);
+   }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,19 +169,18 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         setContentView(R.layout.activity_build_your_own);
         listToppings = findViewById(R.id.list_topps);
         priceBox = findViewById(R.id.byoPriceText);
-
+        sauceSpinner = findViewById(R.id.sauce_spinner);
+        sizeSpinner = findViewById(R.id.size_spinner);
+        exSauce = findViewById((R.id.exSauce_Box));
+        exCheese = findViewById((R.id.exCheese_box));
+        addOrder = findViewById(R.id.byoAddOrder);
         selectedToppings = new boolean[toppings.length];
+
         listToppings.setOnClickListener(view ->  {
             showToppingsDialogue();
         });
-        Spinner sauceSpinner = findViewById(R.id.sauce_spinner);
-        Spinner sizeSpinner = findViewById(R.id.size_spinner);
-
-        CheckBox exSauce = findViewById((R.id.exSauce_Box));
-        CheckBox exCheese = findViewById((R.id.exCheese_box));
-
-        Button addOrder = findViewById(R.id.byoAddOrder);
 //getting sauce type
+        initializeSauceSpinner();
         sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -147,21 +188,14 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                 pizza.sauce = getSauce(sauceType);
                 Toast.makeText(BuildYourOwnActivity.this,sauceType+" Sauce Selected",Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 pizza.sauce = getSauce("Tomato");
                 sauceSpinner.setSelection(0);
             }
         });
-    ArrayList<String> sauceList = new ArrayList<>();
-    sauceList.add("Tomato");
-    sauceList.add("Alfredo");
-    ArrayAdapter<String> sauceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sauceList);
-    sauceAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-    sauceSpinner.setAdapter(sauceAdapter);
-
 //initialize size spinner
+        initializeSizeSpinner();
     sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -170,48 +204,11 @@ public class BuildYourOwnActivity extends AppCompatActivity {
             priceBox.setText(updatePrice());
             Toast.makeText(BuildYourOwnActivity.this,"Size Selected "+ sizeSelected,Toast.LENGTH_SHORT).show();
         }
-
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
         sizeSpinner.setSelection(0);
         }
     });
-
-        ArrayList<String> sizeList = new ArrayList<>();
-        sizeList.add("Small");
-        sizeList.add("Medium");
-        sizeList.add("Large");
-        ArrayAdapter<String> sizeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sizeList);
-        sizeAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-        sizeSpinner.setAdapter(sizeAdapter);
-
-        exCheese.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(exCheese.isChecked()){
-                    pizza.extraCheese = true;
-                    priceBox.setText(updatePrice());
-                } else{
-                    pizza.extraCheese = false;
-                    priceBox.setText(updatePrice());
-                }
-            }
-        });
-
-        exSauce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(exSauce.isChecked()){
-                    pizza.extraSauce = true;
-                    priceBox.setText(updatePrice());
-                } else{
-                    pizza.extraSauce = false;
-                    priceBox.setText(updatePrice());
-                }
-            }
-        });
-
-
 
     } //end of create bracket
 
