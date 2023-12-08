@@ -41,6 +41,7 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ItemsAdapter(getApplicationContext(), items));
+        //recyclerView.setAdapter(new ItemsAdapter(getApplicationContext(), items));
+        recyclerView.setAdapter(new ItemsAdapter(this, items));
     }
 }
