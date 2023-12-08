@@ -163,6 +163,33 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        sizeSpinner.setAdapter(sizeAdapter);
    }
 
+   private String checkNumToppings(){
+
+        if(pizza.toppings.size() < 3){
+            return "Error: Minimum 3 Toppings";
+        }
+       if(pizza.toppings.size() >7){
+           return "Error: Maximum 7 Toppings";
+       }
+       return "";
+   }
+
+   public void soAddOrderClick(View view){
+        String msg = checkNumToppings();
+        if(!msg.isBlank()){
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            return;
+        }
+       StoreOrders storeOrders = StoreOrders.getStoreOrders();
+       ArrayList<Order> orders = storeOrders.getStoreOrdersList();
+       int orderNumber = storeOrders.getAvailable_OrderNumber();
+       Order currentOrder = orders.get(orderNumber);
+       currentOrder.addPizza(pizza);
+
+        msg = "Pizza Added to Order!";
+       Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+   }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -94,6 +94,7 @@ public class StoreOrders {
         return -1; //NOT FOUND
     }
 
+
     /**
      * Add order object to store orders order list
      * @param order, the order we want to add
@@ -182,5 +183,7 @@ public class StoreOrders {
        returnString+= "\n" + "Total Price: $"+ totalString;
        return returnString;
     }
+
+
 
 }
