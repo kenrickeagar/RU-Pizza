@@ -13,7 +13,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
+/**
+ * Define ItemsAdapter class and extend the RecyclerView Class.
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsHolder>{
     private Context context; //need the context to inflate the layout
     private ArrayList<Item> items; //need the data binding to each row of RecyclerView

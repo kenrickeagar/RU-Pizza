@@ -9,6 +9,10 @@ import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * Define Current Order Activity class.
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class CurrentOrderActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private TextView orderHeader, subtotalTextView, taxTextView, totalTextView;
@@ -19,6 +23,10 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
     ArrayList<String> pizzas;
     private int selectedPosition = -1;
 
+    /**
+     * Method to create and initialize features
+     * @param savedInstanceState, the current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +40,10 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
         updateTotal();
     }
 
+    /**
+     * Method to add order when add order buttons clicked
+     * @param view, the current view
+     */
     public void addOrderBtnClick(View view) {
         StoreOrders storeOrders = StoreOrders.getStoreOrders();
         ArrayList<Order> storeOrdersList = storeOrders.getStoreOrdersList();
@@ -51,6 +63,10 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
         selectedPosition = -1;
     }
 
+    /**
+     * Method to add order when add order buttons clicked
+     * @param orderIndex, integer representing the order index
+     */
     private void updatePizzaListView(int orderIndex) {
         StoreOrders storeOrders = StoreOrders.getStoreOrders();
         ArrayList<Order> orders = storeOrders.getStoreOrdersList();
@@ -62,7 +78,9 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
         currentOrderListView.setOnItemClickListener(this);
 
     }
-
+    /**
+     * Method to display order Number
+     */
     private void setOrderNumber() {
         orderHeader = findViewById(R.id.orderHeader);
         int orderNumber = StoreOrders.getStoreOrders().getAvailable_OrderNumber();
@@ -70,6 +88,13 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
         orderHeader.setText(orderNum);
     }
 
+    /**
+     * Method to display current item selected
+     * @param parent, default adapter view
+     * @param view, the current view
+     * @param position, the index selected in list
+     * @param id, id of item
+     */
     @Override
     public void onItemClick(AdapterView parent, View view, int position, long id) {
         StoreOrders storeOrders = StoreOrders.getStoreOrders();
@@ -84,6 +109,10 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
         Toast.makeText(this, size, Toast.LENGTH_SHORT).show(); //do something about the selected item
     }
 
+    /**
+     * Method to remove Pizza when remove pizza buttons clicked
+     * @param view, the current view
+     */
     public void onRemoveBtnClick(View view) {;
         if (selectedPosition == -1) {
             String size = "No pizza selected!";
@@ -107,6 +136,11 @@ public class CurrentOrderActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    /**
+     * Method to format Double to a String
+     * @param price, the double we want to format
+     * @return a string representing price
+     */
     private String formatDouble(Double price) {
         DecimalFormat format = new DecimalFormat("#.##");
         price = Double.parseDouble(format.format(price));

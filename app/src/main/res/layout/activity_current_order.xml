@@ -15,12 +15,15 @@
               app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="100dp"
               app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="100dp"/>
 
-    <ListView android:layout_width="403dp"
-              android:layout_height="400dp"
-              android:id="@+id/currentOrderListView"
-              app:layout_constraintEnd_toEndOf="parent"
-              android:layout_marginEnd="5dp" app:layout_constraintTop_toTopOf="parent"
-              android:layout_marginTop="100dp"/>
+    <ListView
+        android:id="@+id/currentOrderListView"
+        android:layout_width="403dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/subtotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button android:layout_width="183dp" android:layout_height="71dp"
             android:text="@string/order_btn"

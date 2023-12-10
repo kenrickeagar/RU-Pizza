@@ -72,6 +72,12 @@ public class Order {
         return returnVal;
     }
 
+    public double getOrder_total() {
+        double subtotal = getOrder_Subtotal();
+        double tax = subtotal * 0.06625;
+        return subtotal + tax;
+    }
+
     /**
      * Get Pizza at specified index
      * @param index, the index of the pizza we want to get

@@ -34,13 +34,13 @@ public class PizzaMaker {
         if(pizzaType.equals("BBQ Chicken")){
             return new BBQChicken();
         }
-        if(pizzaType.equals("Breakfast Pizza")){
+        if(pizzaType.equals("Breakfast")){
             return new Breakfast();
         }
         if(pizzaType.equals("Buffalo Chicken")){
             return new BuffaloChicken();
         }
-        if(pizzaType.equals("Hamburger Pizza")){
+        if(pizzaType.equals("Hamburger")){
             return new Hamburger();
         }
         if(pizzaType.equals("Hawaiian")){

@@ -63,10 +63,38 @@
         android:layout_width="187dp"
         android:layout_height="61dp"
         android:layout_marginTop="10dp"
-        android:text="@string/cancel_btn"
         android:onClick="onSoCancelButton"
+        android:text="@string/cancel_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soListView"
+        app:layout_constraintVertical_bias="0.329" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="@string/price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soListView"
+        app:layout_constraintVertical_bias="0.267" />
+
+    <TextView
+        android:id="@+id/soTotalText"
+        android:layout_width="105dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="53dp"
+        android:text="@string/default_price_zero"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/soListView"
         app:layout_constraintVertical_bias="0.0" />

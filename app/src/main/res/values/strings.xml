@@ -20,4 +20,5 @@
     <string name="so_title">Store Orders</string>
     <string name="order_number">Order Number</string>
     <string name="cancel_btn">Cancel Order</string>
+    <string name="default_price_zero">0.00</string>
 </resources>

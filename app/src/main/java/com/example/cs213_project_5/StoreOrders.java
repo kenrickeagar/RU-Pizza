@@ -35,14 +35,6 @@ public class StoreOrders {
         this.storeOrdersList.add(firstOrder);
     }
 
-    /**
-     * Store order object constructor
-     * @param storeOrders, a list of order objects
-     */
-    /*public StoreOrders(ArrayList<Order> storeOrders){
-        this.storeOrders = storeOrders;
-    }*/
-
 
     /**
      * Get StoreOrders object.

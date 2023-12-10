@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-
+/**
+ * Define the Main Activity class.
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

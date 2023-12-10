@@ -19,6 +19,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Define Build Your Own Activity class.
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class BuildYourOwnActivity extends AppCompatActivity {
 
     TextView listToppings;
@@ -30,12 +35,17 @@ public class BuildYourOwnActivity extends AppCompatActivity {
     Button addOrder;
 
 
-    private BuildYourOwn pizza = (BuildYourOwn) createPizza("BuildYourOwn");
+    private Pizza pizza = createPizza("Build Your Own");
 
     String[] toppings = {"SAUSAGE", "PEPPERONI", "GREEN_PEPPERS", "ONION", "MUSHROOM", "BLACK_OLIVE",
                         "BEEF", "HAM", "SHRIMP","SQUID","CRAB_MEATS","PINEAPPLE","PICKLES","CHICKEN",
                         "FRIED_EGG", "BACON", "SPINACH", "HAMBURGER"};
 
+    /**
+     * Method to get topping enum based off string input
+     * @param input, string representation of topping
+     * @return topping enum
+     */
     private Topping getTopping(String input){
         Topping[] tempToppings = Topping.BEEF.getList();
         for(int i =0; i<tempToppings.length; i++){
@@ -49,6 +59,10 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         return null;
     }
 
+    /**
+     * Method to get String to updated price
+     * @return String representing price
+     */
     private String updatePrice(){
         double price = this.pizza.price();
         return Double.toString(price);
@@ -98,22 +112,29 @@ public class BuildYourOwnActivity extends AppCompatActivity {
                         stringBuilder.append(", ");
                     }
                 }
-
                 listToppings.setText(stringBuilder.toString());
                 priceBox.setText(updatePrice());
             }
         });
         builder.show();
-
     }
 
+    /**
+     * Method to get Sauce based off string input
+     * @param sauce, string representation of sauce type
+     * @return sauce enum
+     */
    private Sauce getSauce(String sauce){
         if(sauce.equals("Tomato")){
             return Sauce.TOMATO;
         }
         return Sauce.ALFREDO;
    }
-
+    /**
+     * Method to get Size based off string input
+     * @param size, string representation of size type
+     * @return size enum
+     */
    private Size getSize(String size){
         if(size.equals("Small")){
             return Size.SMALL;
@@ -124,6 +145,10 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        return Size.LARGE;
    }
 
+    /**
+     * Method to add extra cheese, when checkbox is selected
+     * @param view, the current view
+     */
    public void onExCheeseClick(View view){
        if(exCheese.isChecked()){
            pizza.extraCheese = true;
@@ -133,7 +158,10 @@ public class BuildYourOwnActivity extends AppCompatActivity {
            priceBox.setText(updatePrice());
        }
    }
-
+    /**
+     * Method to add extra sauce, when checkbox is selected
+     * @param view, the current view
+     */
    public void onExSauceClick(View view){
        if(exSauce.isChecked()){
            pizza.extraSauce = true;
@@ -144,6 +172,9 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        }
    }
 
+    /**
+     * Method to initialize and fill sauce spinner
+     */
    private void initializeSauceSpinner(){
        ArrayList<String> sauceList = new ArrayList<>();
        sauceList.add("Tomato");
@@ -152,7 +183,9 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        sauceAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
        sauceSpinner.setAdapter(sauceAdapter);
    }
-
+    /**
+     * Method to initialize and fill size spinner
+     */
    private void initializeSizeSpinner(){
        ArrayList<String> sizeList = new ArrayList<>();
        sizeList.add("Small");
@@ -163,6 +196,10 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        sizeSpinner.setAdapter(sizeAdapter);
    }
 
+    /**
+     * Method to check if minimum/maximum toppings have been reached
+     * @return String stating if we reached maximum or not reached minimum toppings
+     */
    private String checkNumToppings(){
 
         if(pizza.toppings.size() < 3){
@@ -174,6 +211,10 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        return "";
    }
 
+    /**
+     * Method to add order when Add Order Button is clicked
+     * @param view, the current view
+     */
    public void soAddOrderClick(View view){
         String msg = checkNumToppings();
         if(!msg.isBlank()){
@@ -190,6 +231,46 @@ public class BuildYourOwnActivity extends AppCompatActivity {
        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
    }
 
+    /**
+     * Action when sauce is selected
+     */
+   public void onSauceSelected(){
+       sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               String sauceType = adapterView.getItemAtPosition(i).toString();
+               pizza.sauce = getSauce(sauceType);
+               Toast.makeText(BuildYourOwnActivity.this,sauceType+" Sauce Selected",Toast.LENGTH_SHORT).show();
+           }
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
+               pizza.sauce = getSauce("Tomato");
+               sauceSpinner.setSelection(0);
+           }
+       });
+   }
+    /**
+     * Action when size is selected
+     */
+   public void onSizeSelected(){
+       sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               String sizeSelected = adapterView.getItemAtPosition(i).toString();
+               pizza.size = getSize(sizeSelected);
+               priceBox.setText(updatePrice());
+               Toast.makeText(BuildYourOwnActivity.this,"Size Selected "+ sizeSelected,Toast.LENGTH_SHORT).show();
+           }
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
+               sizeSpinner.setSelection(0);
+           }
+       });
+   }
+    /**
+     * Method to create and initialize features
+     * @param savedInstanceState, the current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,40 +283,13 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         exCheese = findViewById((R.id.exCheese_box));
         addOrder = findViewById(R.id.byoAddOrder);
         selectedToppings = new boolean[toppings.length];
-
         listToppings.setOnClickListener(view ->  {
             showToppingsDialogue();
         });
-//getting sauce type
         initializeSauceSpinner();
-        sauceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String sauceType = adapterView.getItemAtPosition(i).toString();
-                pizza.sauce = getSauce(sauceType);
-                Toast.makeText(BuildYourOwnActivity.this,sauceType+" Sauce Selected",Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                pizza.sauce = getSauce("Tomato");
-                sauceSpinner.setSelection(0);
-            }
-        });
-//initialize size spinner
+        onSauceSelected();
         initializeSizeSpinner();
-    sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String sizeSelected = adapterView.getItemAtPosition(i).toString();
-            pizza.size = getSize(sizeSelected);
-            priceBox.setText(updatePrice());
-            Toast.makeText(BuildYourOwnActivity.this,"Size Selected "+ sizeSelected,Toast.LENGTH_SHORT).show();
-        }
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-        sizeSpinner.setSelection(0);
-        }
-    });
+        onSizeSelected();
 
     } //end of create bracket
 

@@ -9,6 +9,11 @@ import android.os.Bundle;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * Define ItemSelcetedActivity class.
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class ItemSelectedActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView pizzaName, sauce, toppings, price;

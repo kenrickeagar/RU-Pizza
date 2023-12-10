@@ -1,11 +1,18 @@
 package com.example.cs213_project_5;
 
+import static com.example.cs213_project_5.PizzaMaker.createPizza;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+/**
+ * Define Specialty Pizza Activity class.
+ * @author Kenrick Eagar, Zachary Derish
+ */
 
 public class SpecialtyPizzaActivity extends AppCompatActivity {
 
@@ -30,7 +37,7 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
         items.add(new Item(supreme.getType(), R.drawable.supreme, supreme.toppings.toString(), supreme.sauce.toString()));
         Hawaiian hawaiian = new Hawaiian();
         items.add(new Item(hawaiian.getType(), R.drawable.hawaiian, hawaiian.toppings.toString(), hawaiian.sauce.toString()));
-        BBQChicken bbqChicken = new BBQChicken();
+       BBQChicken bbqChicken = new BBQChicken();
         items.add(new Item(bbqChicken.getType(), R.drawable.bbqchicken, bbqChicken.toppings.toString(), bbqChicken.sauce.toString()));
         Breakfast breakfast = new Breakfast();
         items.add(new Item(breakfast.getType(), R.drawable.breakfast, breakfast.toppings.toString(), breakfast.sauce.toString()));
