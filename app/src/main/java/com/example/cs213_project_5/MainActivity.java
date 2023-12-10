@@ -10,6 +10,10 @@ import android.os.Bundle;
  */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Method to create and initialize features
+     * @param savedInstanceState, the current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Switch to specialty pizza activity button handler.
-     * @param view
+     * @param view, the current view
      */
     public void specialtyBtn(View view) {
         Intent intent = new Intent(this, SpecialtyPizzaActivity.class);
@@ -27,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Switch to build your own activity button handler.
-     * @param view
+     * @param view, the current view
      */
     public void byoBtn(View view) {
         Intent intent = new Intent(this, BuildYourOwnActivity.class);
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Switch to store orders activity button handler.
-     * @param view
+     * @param view, the current view
      */
     public void storeOrdersBtn(View view) {
         Intent intent = new Intent(this, StoreOrdersActivity.class);
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Switch to current order activity button handler.
-     * @param view
+     * @param view, the curren view
      */
     public void currentOrderBtn(View view) {
         Intent intent = new Intent(this, CurrentOrderActivity.class);

@@ -16,6 +16,10 @@ import java.util.ArrayList;
 
 public class SpecialtyPizzaActivity extends AppCompatActivity {
 
+    /**
+     * Method to create and initialize features
+     * @param savedInstanceState, the current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

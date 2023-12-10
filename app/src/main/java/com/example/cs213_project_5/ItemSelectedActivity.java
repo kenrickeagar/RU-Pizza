@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * Define ItemSelcetedActivity class.
+ * Define Item Selected Activity class.
  * @author Kenrick Eagar, Zachary Derish
  */
 
