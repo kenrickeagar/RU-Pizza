@@ -1,5 +1,8 @@
 package com.example.cs213_project_5;
-
+/**
+ * Define Item Class
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class Item {
     private String pizzaName;
     private int image;

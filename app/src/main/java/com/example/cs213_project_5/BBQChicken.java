@@ -1,7 +1,10 @@
 package com.example.cs213_project_5;
 
 import java.util.ArrayList;
-
+/**
+ * Extend Pizza Class and Define BBQChicken Class
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class BBQChicken extends Pizza{
     public static final double PRICE = 12.99;
     private final String type = "BBQ Chicken";
