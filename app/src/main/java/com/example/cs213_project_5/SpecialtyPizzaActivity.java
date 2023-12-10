@@ -20,11 +20,8 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialty_pizza);
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
         ArrayList<Item> items = new ArrayList<>();
-
         Deluxe deluxe = new Deluxe();
         items.add(new Item(deluxe.getType(), R.drawable.deluxe, deluxe.toppings.toString(), deluxe.sauce.toString()));
         Meatzza meatzza = new Meatzza();
@@ -45,8 +42,6 @@ public class SpecialtyPizzaActivity extends AppCompatActivity {
         items.add(new Item(hamburger.getType(), R.drawable.hamburger, hamburger.toppings.toString(), hamburger.sauce.toString()));
         BuffaloChicken buffaloChicken = new BuffaloChicken();
         items.add(new Item(buffaloChicken.getType(), R.drawable.buffalochicken, buffaloChicken.toppings.toString(), buffaloChicken.sauce.toString()));
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //recyclerView.setAdapter(new ItemsAdapter(getApplicationContext(), items));
         recyclerView.setAdapter(new ItemsAdapter(this, items));

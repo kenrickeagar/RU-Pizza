@@ -71,7 +71,10 @@ public class Order {
         }
         return returnVal;
     }
-
+    /**
+     * Get the total with tax for order
+     * @return double
+     */
     public double getOrder_total() {
         double subtotal = getOrder_Subtotal();
         double tax = subtotal * 0.06625;

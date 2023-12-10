@@ -23,7 +23,10 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
     private CheckBox cheeseCheckBox, sauceCheckBox;
     private Button specialtyAddOrderBtn;
     private Pizza pizza;
-
+    /**
+     * Method to create and initialize features
+     * @param savedInstanceState, the current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +55,21 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
         price.setText(priceSeq);
     }
 
+    /**
+     * Method to format double to price
+     * @param price, double
+     * @return String of double as price
+     */
     private String formatDouble(Double price) {
         DecimalFormat format = new DecimalFormat("#.##");
         price = Double.parseDouble(format.format(price));
         return String.valueOf(price);
     }
 
+    /**
+     * Method to get string representation of price
+     * @return string representation of price
+     */
     private String getPrice() {
         price = findViewById(R.id.price);
         cheeseCheckBox = findViewById(R.id.cheeseCheckBox);
@@ -69,6 +81,13 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
         return "Price: $" + priceString;
     }
 
+    /**
+     * Action when select item
+     * @param parent, current parent
+     * @param view, the current view
+     * @param position, the item index
+     * @param id, id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String size = spinner.getSelectedItem().toString(); //get the selected item
@@ -88,11 +107,19 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    /**
+     * Method if nothing is selected
+     * @param parent, current parent
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //it's fine to leave it blank
     }
 
+    /**
+     * Method when extra sauce is selected
+     * @param view, current view
+     */
     public void extraSauceClick(View view) {
         if (sauceCheckBox.isChecked()) {
             pizza.extraSauce = true;
@@ -104,6 +131,10 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
         price.setText(getPrice());
     }
 
+    /**
+     * Nethod to add extra cheese to pizza when button selected
+     * @param view, current view
+     */
     public void extraCheeseClick(View view) {
         if (cheeseCheckBox.isChecked()) {
             pizza.extraCheese = true;
@@ -115,6 +146,10 @@ public class ItemSelectedActivity extends AppCompatActivity implements AdapterVi
         price.setText(getPrice());
     }
 
+    /**
+     * Method to add pizza to current order
+     * @param view, the current view
+     */
     public void specialtyAddOrderClick(View view) {
         // Add order message
         String msg = "Pizza Added to Order!";
